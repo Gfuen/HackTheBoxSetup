@@ -16,7 +16,7 @@ apt-get update
 
 #Install xterm
 echo -e "${GREEN}[*] Installing XTERM${NC}"
-apt-get install xterm
+apt-get install -y xterm
 
 #Install pip3
 echo -e "${GREEN}[*] Installing Python3-pip${NC}"
