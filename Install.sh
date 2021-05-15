@@ -112,6 +112,7 @@ mkdir -p HTB
 cd ~/
 mkdir -p Tools
 mkdir -p Scripts
+mkdir -p Config
 
 #Install python2to3
 echo -e "${GREEN}[*] Installing 2to3${NC}"
@@ -260,4 +261,8 @@ msfdb init
 cd ~/Tools
 git clone https://github.com/jpillora/chisel/releases/download/v1.7.4/chisel_1.7.4_linux_amd64.gz
 git clone https://github.com/jpillora/chisel/releases/download/v1.7.4/chisel_1.7.4_windows_amd64.gz
+
+#Install Configs
+cd ~/Config
+wget -q --show-progress -N https://raw.githubusercontent.com/Gfuen/HackTheBoxSetup/main/Gfuen640.ovpn -P ~/Config
 
