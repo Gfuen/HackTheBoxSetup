@@ -399,19 +399,22 @@ alias j='jobs -l'
 alias ports='netstat -tulanp'
 
 #HTB Start Openvpn
-alias htblab='sudo openvpn /home/kali/Desktop/PWK/Setup/Gfuen640.ovpn'
+alias htblab='sudo openvpn ~/Config/Gfuen640.ovpn'
+
+#Config Dir
+alias configdir='cd ~/Config'
 
 #PWK Connect
-alias pwk='sudo openvpn /home/kali/Desktop/PWK/Setup/OS-86533-PWK.ovpn'
+#alias pwk='sudo openvpn ~/Config/OS-86533-PWK.ovpn'
 
 #Change into PWK directory
-alias pwkdir='cd /home/kali/Desktop/PWK/OSCP/lab/'
+#alias pwkdir='cd /home/kali/Desktop/PWK/OSCP/lab/'
 
 #Change into PUBLIC directory
-alias pwkpublic='cd /home/kali/Desktop/PWK/OSCP/lab/PUBLIC/'
+#alias pwkpublic='cd /home/kali/Desktop/PWK/OSCP/lab/PUBLIC/'
 
 #Change into IT Directory
-alias pwkit='cd /home/kali/Desktop/PWK/OSCP/lab/IT/'
+#alias pwkit='cd /home/kali/Desktop/PWK/OSCP/lab/IT/'
 
 #Change into directory
 alias ..='cd ../'
@@ -436,7 +439,7 @@ alias stopftp="systemctl stop pure-ftpd"
 alias statusftp="systemctl status pure-ftp"
 
 #alias for PWK Connection
-alias pwk_ping="ping 10.11.1.220"
+alias pwkping="ping 10.11.1.220"
 
 #Nmap prettify
 alias nmap="grc nmap"
