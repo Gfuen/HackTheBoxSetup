@@ -254,7 +254,7 @@ extract() {
 #Search nmap nse scripts
 nsearch() {
     #example usage: nsearch smb
-    locate *.nse | grep -o "$1".*;
+    l /usr/share/nmap/scripts | grep $1
 }
 
 #Aliases
@@ -272,10 +272,10 @@ alias ps="pipenv shell" # start a env with just "ps"
 alias dl="cd ~/Downloads"
 
 #Alias to show Zsh aliases
-alias catz="cat ~/.zshrc"
+alias catz="less ~/.zshrc"
 
 #Alias to show bash aliases
-alias catb="cat ~/.bashrc"
+alias catb="less ~/.bashrc"
 
 #Alias to install package with pipx
 alias pinstall="python3 -m pipx install"
