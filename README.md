@@ -5,15 +5,21 @@ Command to install in Ubuntu/Kali Box
 
 ```
 Step 1 Install dot files
-sh -c "$(wget -O- https://raw.githubusercontent.com/Gfuen/BugBountySetup/main/dotfilesetup.sh)"
+wget -O- https://raw.githubusercontent.com/Gfuen/HackTheBoxSetup/main/dotfilesetup.sh
+dos2unix dotfilesetup.sh
+sudo bash dotfilesetup.sh
 ```
 
 ```
 Step 2 Install Zsh and configurations
-sh -c "$(wget -O- https://raw.githubusercontent.com/Gfuen/BugBountySetup/main/zshinstall.sh)"
+wget -O- wget https://raw.githubusercontent.com/Gfuen/HackTheBoxSetup/main/zshinstall.sh
+dos2unix zshinstall.sh
+sudo bash zshinstall.sh
 ```
 
 ```
 Step 3 Install tools needed
-sh -c "$(wget -O- https://raw.githubusercontent.com/Gfuen/BugBountySetup/main/Install.sh)"
+wget -O- https://raw.githubusercontent.com/Gfuen/HackTheBoxSetup/main/Install.sh
+dos2unix Install.sh
+sudo bash Install.sh
 ```
