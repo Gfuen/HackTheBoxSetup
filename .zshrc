@@ -143,11 +143,11 @@ pxinstall() {
 
 dirsearch() {
     echo "Usage: dirsearch.py <url> <extension(s) ..: "*"> <wordlist>"
-    python3 ~/Tools/dirsearch/dirsearch.py -u $1 -e $2 -t 50 -w $3
+    python3 ~/Tools/dirsearch/dirsearch.py -u $1 -e $2 -t 100 -w $3
 }
 dirsearch_r() {
     echo "Usage: dirsearch.py <url> <extension(s) for example ..: "*"> <wordlist>"
-    python3 ~/Tools/dirsearch/dirsearch.py -u $1 -e $2 -t 50 -r 4 -w $3
+    python3 ~/Tools/dirsearch/dirsearch.py -u $1 -e $2 -t 100 -r 4 -w $3
 }
 nmap_fast() {
     echo "Usage: nmap_fast <output.txt> <ip/24>"
