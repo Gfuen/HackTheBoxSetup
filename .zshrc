@@ -454,6 +454,7 @@ alias less='less -FSRXc'
 #-------------------------------------------------------------------------------
 
 #Export Env Variables
+export WORD0="/usr/share/dirb/wordlists/big.txt"
 export WORD1="/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt"
 export WORD2="/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt"
 export WORD3="/usr/share/wordlists/rockyou.txt"
