@@ -88,6 +88,7 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
+    zsh-autocomplete
     )
 #plugins+=(zsh-nvm)
 
