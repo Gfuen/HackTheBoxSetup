@@ -12,7 +12,7 @@ sudo bash dotfilesetup.sh
 
 ```
 Step 2 Install Zsh and configurations
-wget wget https://raw.githubusercontent.com/Gfuen/HackTheBoxSetup/main/zshinstall.sh
+wget https://raw.githubusercontent.com/Gfuen/HackTheBoxSetup/main/zshinstall.sh
 dos2unix zshinstall.sh
 sudo bash zshinstall.sh
 ```
