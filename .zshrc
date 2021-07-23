@@ -166,14 +166,6 @@ nmap_recon() {
     echo "Usage: nmap_recon <output.txt> <ip/24>"
     nmap -sC -sV -oA $1 $2
 }
-dirb_without_auth() {
-    echo "Usage: dirb <url> <wordlist> <output.txt>"
-    dirb $1 $2 -o $3 -N 302,404 -R -w
-}
-dirb_with_auth() {
-    echo "Usage: drib <url> <wordlist> <output.txt> <user> <password>"
-    dirb $1 $2 -o $3 -N 302,404 -R -w -u $4:$5
-}
 nikto_without_auth() {
     echo "Usage: nikto <output.txt> <url>"
     nikto -Display 1234EPV -o $1 -Format htm -Tuning 1234567890abcdex -host $2 -404code -404string
@@ -189,6 +181,10 @@ killproc() {
 httpsrv() {
     echo "Usage: httpsrv <port>"
     python -m SimpleHTTPServer $1
+}
+ferox() {
+    echo "Usage: feroxbuster <url>
+    
 }
 
 cheat() {
