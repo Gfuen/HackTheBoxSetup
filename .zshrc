@@ -186,7 +186,7 @@ httpsrv() {
     python -m SimpleHTTPServer $1
 }
 ferox() {
-    echo "Usage: feroxbuster <url> <extensions ex: js,html,etc...> <output.txt> <wordlist>
+    echo "Usage: feroxbuster <url> <extensions ex: js,html,etc...> <output.txt> <wordlist>"
     feroxbuster -u $1 -x $2 -e -r -vv -o $3 -w $4
 }
 cheat() {
