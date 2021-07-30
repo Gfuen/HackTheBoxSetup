@@ -150,21 +150,25 @@ dirsearch_r() {
     echo "Usage: dirsearch.py <url> <extension(s) for example ..: "*"> <wordlist>"
     python3 ~/Tools/dirsearch/dirsearch.py -u $1 -e $2 -t 100 -r 4 -w $3
 }
+nmap_stealth() {
+    echo "Usage: nmap_stealth <output filename> <ip>"
+    nmap -sS -oN $1 $2
+}
 nmap_fast() {
-    echo "Usage: nmap_fast <output.txt> <ip/24>"
-    nmap -sV -O --top-ports 200 --open -oA $1 $2
+    echo "Usage: nmap_fast <output filename> <ip>"
+    nmap -Pn -n -vvv --top-ports 200 --open -oN $1 $2
 }
 nmap_full() {
-    echo "Usage: nmap_full <output.txt> <ip/24>"
-    nmap -sC -sV -O --open -p- -oA $1 $2
+    echo "Usage: nmap_full <output filename> <ip>"
+    nmap -Pn -n -vvv -oN  $1 $2
 }
 nmap_udp() {
-    echo "Usage: nmap_udp <output.txt> <ip/24>"
-    nmap -sU -p- -oA $1 $2
+    echo "Usage: nmap_udp <ports> <output filename> <ip>"
+    nmap -Pn -n -vvv -sU -oN $1 $2
 }
-nmap_recon() {
-    echo "Usage: nmap_recon <output.txt> <ip/24>"
-    nmap -sC -sV -oA $1 $2
+nmap_targeted() {
+    echo "Usage: nmap_targeted <ports> <output filename> <ip>"
+    nmap -Pn -n -vvv -p $1 -oN $2 $3
 }
 nikto_without_auth() {
     echo "Usage: nikto <output.txt> <url>"
