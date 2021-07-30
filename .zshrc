@@ -451,12 +451,11 @@ alias less='less -FSRXc'
 #-------------------------------------------------------------------------------
 
 #Export Env Variables
-export WORD0="/usr/share/dirb/wordlists/big.txt"
 export WORD1="/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt"
 export WORD2="/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt"
-export WORD3="/usr/share/wordlists/rockyou.txt"
-export WORD4="/usr/share/wordlists/dirbuster/apache-user-enum-1.0.txt"
-export WORD5="/usr/share/wordlists/dirbuster/apache-user-enum-2.0.txt"
+export WORD3="/usr/share/dirb/wordlists/big.txt"
+export WORD4="/usr/share/wordlists/common.txt"
+export WORD5="/usr/share/wordlists/rockyou.txt"
 export WORD6="/usr/share/wordlists/dirb/others/best1050.txt"
 export WORD7="/usr/share/wordlists/dirb/others/names.txt"
 export SECLISTS="/usr/share/seclists"
