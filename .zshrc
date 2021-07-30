@@ -165,8 +165,8 @@ nmap_udp() {
     echo "Usage: nmap_udp <ports> <output filename> <ip>"
     nmap -Pn -n -vvv -sU -oN $1 $2
 }
-nmap_targeted() {
-    echo "Usage: nmap_targeted <ports> <output filename> <ip>"
+nmap_port() {
+    echo "Usage: nmap_port <ports> <output filename> <ip>"
     nmap -Pn -n -vvv -p $1 -oN $2 $3
 }
 nikto_without_auth() {
