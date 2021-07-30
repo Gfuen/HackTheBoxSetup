@@ -141,7 +141,6 @@ export MARKER_KEY_NEXT_PLACEHOLDER="\C-b"   #change maker key binding from Ctr+t
 pxinstall() {
     python3 -m pipx install git+$1
 }
-
 dirsearch() {
     echo "Usage: dirsearch.py <url> <extension(s) ..: "*"> <wordlist>"
     python3 ~/Tools/dirsearch/dirsearch.py -u $1 -e $2 -t 100 -w $3
@@ -190,7 +189,6 @@ ferox() {
     echo "Usage: feroxbuster <url>
     
 }
-
 cheat() {
     if [ "$2" ]; then
         curl "https://cheat.sh/$1/$2+$3+$4+$5+$6+$7+$8+$9+$10"
@@ -201,7 +199,6 @@ cheat() {
 speedtest() {
     curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
 }
-
 dadjoke() {
     curl https://icanhazdadjoke.com
 }
@@ -459,13 +456,12 @@ export WORD1="/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt"
 export WORD2="/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt"
 export WORD3="/usr/share/dirb/wordlists/big.txt"
 export WORD4="/usr/share/wordlists/common.txt"
-export WORD5="/usr/share/wordlists/rockyou.txt"
-export WORD6="/usr/share/wordlists/dirb/others/best15.txt"
-export WORD7="/usr/share/wordlists/dirb/others/best115.txt"
-export WORD8="/usr/share/wordlists/dirb/others/names.txt"
+export USER1="/usr/share/wordlists/dirb/others/names.txt"
+export PASS1="/usr/share/wordlists/rockyou.txt"
+export PASS2="/usr/share/wordlists/dirb/others/best15.txt"
+export PASS3="/usr/share/wordlists/dirb/others/best115.txt"
 export SECLISTS="/usr/share/seclists"
 export WORDDIR="/usr/share/wordlists"
-export TARGET_RANGE="10.11.1.1-255"
 export TOOLS="~/Tools/"
 export SCRIPT="~/Scripts/"
 export FTP_USER="offsec"
