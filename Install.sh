@@ -150,6 +150,11 @@ echo -e "${GREEN}[*] Installing Autorecon${NC}"
 python3 -m pipx install git+https://github.com/Tib3rius/AutoRecon.git
 python3 -m pipx ensurepath
 
+#Install Updog
+echo -e "${GREEN}[*] Installing Updog${NC}"
+python3 -m pipx install updog
+python3 -m pipx ensurepath
+
 #Install Nishang
 echo -e "${GREEN}[*] Installing Nishang${NC}"
 cd ~/Tools
