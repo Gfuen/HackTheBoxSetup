@@ -145,6 +145,11 @@ python3 -m pipx install certifi
 cd ~/Tools
 git clone https://github.com/maurosoria/dirsearch.git
 
+#Install Hash-Buster
+echo -e "${GREEN}[*] Installing Hash-Buster${NC}"
+cd ~/Tools
+git clone https://github.com/s0md3v/Hash-Buster.git
+
 #Install Autorecon
 echo -e "${GREEN}[*] Installing Autorecon${NC}"
 python3 -m pipx install git+https://github.com/Tib3rius/AutoRecon.git
@@ -157,7 +162,7 @@ python3 -m pipx ensurepath
 
 #Install Nishang
 echo -e "${GREEN}[*] Installing Nishang${NC}"
-cd ~/Tools
+cd ~/Scripts
 git clone https://github.com/samratashok/nishang.git
 
 #Add Scripts to Directory for PrivEsc 
