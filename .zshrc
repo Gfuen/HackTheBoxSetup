@@ -141,14 +141,6 @@ export MARKER_KEY_NEXT_PLACEHOLDER="\C-b"   #change maker key binding from Ctr+t
 pxinstall() {
     python3 -m pipx install git+$1
 }
-dirsearch() {
-    echo "Usage: dirsearch.py <url> <extension(s) ..: "*"> <wordlist>"
-    python3 ~/Tools/dirsearch/dirsearch.py -u $1 -e $2 -t 100 -w $3
-}
-dirsearch_r() {
-    echo "Usage: dirsearch.py <url> <extension(s) for example ..: "*"> <wordlist>"
-    python3 ~/Tools/dirsearch/dirsearch.py -u $1 -e $2 -t 100 -r 4 -w $3
-}
 nmap_stealth() {
     echo "Usage: nmap_stealth <output filename> <ip>"
     nmap -sS -oN $1 $2
