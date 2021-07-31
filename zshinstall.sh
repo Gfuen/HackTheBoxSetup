@@ -22,7 +22,7 @@ if mv -n ~/.zshrc ~/.zshrc-backup-$(date +"%Y-%m-%d"); then # backup .zshrc
     echo -e "Backed up the current .zshrc to .zshrc-backup-date\n"
 fi
 
-wget https://raw.githubusercontent.com/Gfuen/HackTheBox/main/.zshrc
+wget https://raw.githubusercontent.com/Gfuen/HackTheBoxSetup/main/.zshrc
 
 echo -e "Installing oh-my-zsh\n"
 if [ -d ~/.oh-my-zsh ]; then
