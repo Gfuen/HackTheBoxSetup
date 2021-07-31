@@ -1,4 +1,4 @@
-# BugBounty Setup
+# HackTheBox Setup
 
 Command to install in Ubuntu/Kali Box
 
