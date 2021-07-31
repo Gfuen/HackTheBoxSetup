@@ -149,6 +149,9 @@ git clone https://github.com/maurosoria/dirsearch.git
 echo -e "${GREEN}[*] Installing Hash-Buster${NC}"
 cd ~/Tools
 git clone https://github.com/s0md3v/Hash-Buster.git
+cd ./Hash-Buster
+make install
+cd ~/Tools
 
 #Install Autorecon
 echo -e "${GREEN}[*] Installing Autorecon${NC}"
