@@ -31,8 +31,8 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 #Make setup folder
 echo -e "${GREEN}[*] Installing BugBounty Github Dotfiles to Home Directory${NC}"
-wget https://raw.githubusercontent.com/Gfuen/BugBountySetup/main/.tmux.conf 
-wget https://raw.githubusercontent.com/Gfuen/BugBountySetup/main/.vimrc 
+wget https://raw.githubusercontent.com/Gfuen/HackTheBox/main/.tmux.conf 
+wget https://raw.githubusercontent.com/Gfuen/HackTheBox/main/.vimrc 
 dos2unix .tmux.conf
 dos2unix .vimrc
 
