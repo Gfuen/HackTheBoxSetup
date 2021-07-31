@@ -137,14 +137,6 @@ echo -e "${GREEN}[*] Installing rockyou.txt${NC}"
 gunzip /usr/share/wordlists/rockyou.txt.gz 2>/dev/null
 ln -s /usr/share/wordlists ~/Downloads/wordlists 2>/dev/null
 
-#Install packages for dirsearch
-echo -e "${GREEN}[*] Installing dirsearch${NC}"
-python3 -m pipx install urllib3
-python3 -m pipx install chardet
-python3 -m pipx install certifi
-cd ~/Tools
-git clone https://github.com/maurosoria/dirsearch.git
-
 #Install Hash-Buster
 echo -e "${GREEN}[*] Installing Hash-Buster${NC}"
 cd ~/Tools
