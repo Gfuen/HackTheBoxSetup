@@ -155,7 +155,7 @@ nmap_full() {
 }
 nmap_udp() {
     echo "Usage: nmap_udp <ports> <output filename> <ip>"
-    nmap -Pn -n -vvv -sU -oN $1 $2
+    nmap -Pn -n -vvv -sU --top-ports 1000 -oN $1 $2
 }
 nmap_port() {
     echo "Usage: nmap_port <ports> <output filename> <ip>"
