@@ -126,6 +126,10 @@ echo -e "${GREEN}[*] Installing Impacket${NC}"
 python3 -m pipx install git+https://github.com/SecureAuthCorp/impacket.git
 python3 -m pipx ensurepath
 
+#Install Virtualenv
+echo -e "${GREEN}[*] Installing Virtualenv${NC}"
+pip3 install virtualenv
+
 #Install bloodhound
 echo -e "${GREEN}[*] Installing Bloodhound${NC}"
 python3 -m pipx install bloodhound
